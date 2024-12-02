@@ -1,0 +1,18 @@
+{
+	"name": "cvtic312/solo-oop",
+	"version": "0.1",
+	"config": {
+		"vendor-dir": "./vendor"
+	},
+	"autoload": {
+		"psr-4": {
+			"Solo312\\": "src/"
+		}
+	},
+    "require": {
+	    "php": "^8.0"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "^11.0"
+	}
+}
