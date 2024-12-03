@@ -2,17 +2,20 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Solo312\FibonacciSequence;
+use Solo312\Defer;
 
-// Create an instance of FibonacciIterator for the first 10 Fibonacci numbers
-// $sequence = FibonacciSequence::first(50);
+function someFunction() {
+    $a = Defer::init();
 
-//Output each Fibonacci number using a foreach loop
+    $a(function($name) {
+        echo "Goodbye, $name!" . PHP_EOL;
+    }, ['Alice']);
 
+    $a(function($x, $y) {
+        echo "$x + $y = " . ($x + $y) . PHP_EOL;
+    }, [2, 3]);
 
-// echo "<h1>Fibonacci Sequence Range</h1>";
-// echo "<ul>";
-// foreach ($fibonacciRange as $key => $value) {
-//     echo "<li>Key: $key, Value: $value</li>";
-// }
-// echo "</ul>";
+    echo "End of function <br>";
+}
+
+someFunction();

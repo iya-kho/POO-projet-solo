@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Solo312;
+
 class Callback {
     public function __construct(
         private mixed $cb,
@@ -12,8 +14,23 @@ class Callback {
 }
 
 class Defer {
-    public function __construct() {}
+    private array $callables = [];
 
-    public function __destruct() {}
+    public static function init(): self {
+        // Retourne une nouvelle instance de Defer
+        return new self();
+    }
+
+    public function __invoke(callable $cb, array $args = []): void {
+        // Ajouter le callable à la pile
+        $this->callables[] = new Callback($cb, $args);;
+    }
+    
+    public function __destruct() {
+        while (!empty($this->callables)) {
+            $callable = array_pop($this->callables); // Take the last callable
+            $callable->call(); // Execute
+        }
+    }
 }
 ?>

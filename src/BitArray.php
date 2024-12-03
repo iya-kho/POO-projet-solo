@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
-class BitArrayIterator implements Iterator {
+namespace Solo312;
+
+class BitArrayIterator implements \Iterator {
     public function __construct() {}
     public function current(): int {}
     public function key(): int {}
@@ -9,7 +11,7 @@ class BitArrayIterator implements Iterator {
     public function valid(): bool {}
 }
 
-class BitArray implements ArrayAccess, Countable, IteratorAggregate, Stringable {
+class BitArray implements \ArrayAccess, \Countable, \IteratorAggregate, \Stringable {
     private const BYTE_SIZE = 8;
     private const INT_SIZE = PHP_INT_SIZE * self::BYTE_SIZE;
 
