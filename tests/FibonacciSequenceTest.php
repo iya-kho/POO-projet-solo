@@ -42,26 +42,23 @@ class FibonacciSequenceTest extends TestCase {
         foreach ($sequence as $value) {
             $result[] = $value;
             $i++;
-            if ($i >= 5) break; // Test only the first 5 values
+            if ($i >= 5) break; 
         }
 
         $this->assertSame($expected, $result);
     }
 
     public function testCacheOptimization(): void {
-        $sequence = FibonacciSequence::first(50); // Generate first 50 Fibonacci numbers
-    
+        $sequence = FibonacciSequence::first(50); 
         $lastValue = null;
         foreach ($sequence as $key => $value) {
             if ($key === 49) {
-                $lastValue = $value; // Capture the 50th Fibonacci number
+                $lastValue = $value;
             }
         }
-    
-        // Assert the 50th Fibonacci number
+
         $this->assertSame(7778742049, $lastValue); // F(50)
 
-        // Check if the cached value works correctly
-        $this->assertSame(12586269025, $sequence->current()); // F(51) since the next() method has already been called in the end of the iteration
+        $this->assertSame(12586269025, $sequence->current()); 
     }
 }
